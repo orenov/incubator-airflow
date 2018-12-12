@@ -114,7 +114,8 @@ class KubernetesPodOperator(BaseOperator):
             pod.node_selectors = self.node_selectors
             pod.hostnetwork = self.hostnetwork
             pod.tolerations = self.tolerations
-
+            pod.image_pull_secrets = self.image_pull_secrets
+            
             launcher = pod_launcher.PodLauncher(kube_client=client,
                                                 extract_xcom=self.xcom_push)
             (final_state, result) = launcher.run_pod(
